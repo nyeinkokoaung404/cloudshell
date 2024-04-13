@@ -59,15 +59,15 @@ def download_key():
 def add_user():
  
      # Ask for the input
-     username = "nkka404"
+     username = "nyeinkoko"
  
      # Asking for users password
-     password = "nkka404"
+     password = "nyeinkoko"
         
      try:
          # executing useradd command using subprocess module
          subprocess.run(['sudo', 'useradd', '-p', password, username ])
-         subprocess.run(['sudo', 'chpasswd', '-M', username, password ])
+         subprocess.run(['sudo', 'chpasswd', '-m', username, password ])
      except:
          print(f"Failed to add user.")                    
          sys.exit(1)
@@ -143,9 +143,9 @@ print(" AUTO UPDATE IP TO DUCKDNS--DONE..✅")
 
 print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 
-print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
+print(" Host / IP   :⪧  nyeinkokoaung404.duckdns.org")
 print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  nkka404")
+print(" Username    :⪧  nyeinkoko")
 print(" ")
 print(" Use Private Key to access server🔻🔻")
 print(" ")

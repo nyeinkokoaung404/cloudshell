@@ -71,7 +71,7 @@ def add_user():
      try:
          # executing useradd command using subprocess module
          subprocess.run(['sudo', 'useradd', '-p', password, username ])
-         # subprocess.run(['sudo', 'chpasswd', '-m', username, password ])
+         subprocess.run(['sudo', 'chpasswd', '-m', username, password ])
      except:
          print(f"Failed to add user.")                    
          sys.exit(1)
@@ -85,7 +85,7 @@ def run_first():
          r = subprocess.run(['gcloud', 'alpha', 'cloud-shell', 'ssh', '--dry-run' ],stdout=subprocess.PIPE)   
          a = r.stdout
          return a
-         #print('Mods Done')
+         print('Mods Done')
      except:
          print(f"Failed to create session.")                    
          sys.exit(1)

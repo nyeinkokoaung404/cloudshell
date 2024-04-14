@@ -27,7 +27,7 @@ def duckdns_update(domains, token, ip, verbose=False):
     r = requests.get("https://www.duckdns.org/update", params)
     return r.text.strip().replace('\n', ' ')
 token = "4f0bc9a7-58b7-465f-91e8-6a1211393788"
-domain = "nyeinkokoaung404.duckdns.org"
+domain = "nyeinkokoaung.duckdns.org"
 
 def download_key():
     url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"

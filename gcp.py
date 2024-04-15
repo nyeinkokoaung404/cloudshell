@@ -117,16 +117,16 @@ re = res.decode()
 #words, ss = re.split('=no ')
 
 
-try:
-    ips, ssss = ss.split(' -- PROJECT_ID')
-    user,ip = ips.split('@')
+#try:
+    #ips, ssss = ss.split(' -- PROJECT_ID')
+    #user,ip = ips.split('@')
 
-    print("Here is Current INFO")
+    #print("Here is Current INFO")
 
-    print(ip + " <<< Host : Port >>> 6000")
+    #print(ip + " <<< Host : Port >>> 6000")
 
-    print("nkka404")
-    duckdns_update(domain, token, ip)
+    #print("nkka404")
+    #duckdns_update(domain, token, ip)
 #except:
       #ips, ssss = ss.split(' --')
       #user,ip = ips.split('@')

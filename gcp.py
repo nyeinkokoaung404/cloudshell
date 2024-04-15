@@ -128,7 +128,7 @@ try:
     print("nkka404")
     duckdns_update(domain, token, ip)
 except:
-      ips, ssss = ss.split(' --')
+      #ips, ssss = ss.split(' --')
       user,ip = ips.split('@')
 
 print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")

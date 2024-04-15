@@ -62,7 +62,7 @@ def add_user():
      username = "nyeinkoko"
  
      # Asking for users password
-     password = "nyeinkoko"
+     password = "12345"
         
      try:
          # executing useradd command using subprocess module
@@ -126,7 +126,7 @@ re = res.decode()
     #print(ip + " <<< Host : Port >>> 6000")
 
     #print("nkka404")
-    #duckdns_update(domain, token, ip)
+    duckdns_update(domain, token, ip)
 #except:
       #ips, ssss = ss.split(' --')
       #user,ip = ips.split('@')

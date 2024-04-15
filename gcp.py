@@ -114,7 +114,7 @@ download_key()
 
 res = run_first()
 re = res.decode()
-words, ss = re.split('=no ')
+#words, ss = re.split('=no ')
 
 
 try:

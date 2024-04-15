@@ -127,7 +127,7 @@ try:
 
     print("nkka404")
     duckdns_update(domain, token, ip)
-except:
+#except:
       #ips, ssss = ss.split(' --')
       #user,ip = ips.split('@')
 

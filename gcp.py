@@ -136,10 +136,10 @@ except:
 #print(" Host / IP   :⪧  " + ip)
 #print(" SSH Port    :⪧  6000")
 #print(" Username    :⪧  " + user)
-duckdns_update(domain, token, ip)
+#duckdns_update(domain, token, ip)
 print(" ")
 
-print(" AUTO UPDATE IP TO DUCKDNS--DONE..")
+print(" AUTO UPDATED IP TO DUCKDNS ")
 
 #print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 

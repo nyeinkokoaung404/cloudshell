@@ -133,9 +133,9 @@ except:
 
 #print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")
 
-print(" Host / IP   :⪧  " + ip)
-print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  " + user)
+#print(" Host / IP   :⪧  " + ip)
+#print(" SSH Port    :⪧  6000")
+#print(" Username    :⪧  " + user)
 duckdns_update(domain, token, ip)
 print(" ")
 
@@ -143,9 +143,9 @@ print(" AUTO UPDATE IP TO DUCKDNS--DONE..")
 
 #print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 
-print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
-print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  nyeinkoko")
+#print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
+#print(" SSH Port    :⪧  6000")
+#print(" Username    :⪧  nyeinkoko")
 print(" ")
 print(" Use Private Key to access server ")
 print(" ")

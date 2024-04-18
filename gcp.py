@@ -40,13 +40,13 @@ domain = "nyeinkokoaung.duckdns.org"
         #os.remove(pub)
     #if os.path.exists(prv):
         #os.remove(prv)
-    try:
+    #try:
          # executing useradd command using subprocess module
-         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
-         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine' ])     
-    except:
-         print(f"Failed to add user.")                    
-         sys.exit(1)
+         #subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
+         #subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine' ])     
+    #except:
+         #print(f"Failed to add user.")                    
+         #sys.exit(1)
     
     #try:
         #down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 

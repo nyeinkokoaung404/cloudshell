@@ -29,17 +29,17 @@ def duckdns_update(domains, token, ip, verbose=False):
 token = "4f0bc9a7-58b7-465f-91e8-6a1211393788"
 domain = "nyeinkokoaung.duckdns.org"
 
-def download_key():
-    url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
-    url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
-    pub = '/.ssh/google_compute_engine.pub'
-    prv = '/.ssh/google_compute_engine'
-    loc = '/.ssh'
+#def download_key():
+    #url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
+    #url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
+    #pub = '/.ssh/google_compute_engine.pub'
+    #prv = '/.ssh/google_compute_engine'
+    #loc = '/.ssh'
 
-    if os.path.exists(pub):
-        os.remove(pub)
-    if os.path.exists(prv):
-        os.remove(prv)
+    #if os.path.exists(pub):
+        #os.remove(pub)
+    #if os.path.exists(prv):
+        #os.remove(prv)
     try:
          # executing useradd command using subprocess module
          subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
@@ -48,13 +48,13 @@ def download_key():
          print(f"Failed to add user.")                    
          sys.exit(1)
     
-    try:
-        down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 
-        down2 = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine' ]) 
-    except:
-        pass
-    subprocess.run(['sudo', 'mv', 'google_compute_engine.pub', '.ssh/' ])
-    subprocess.run(['sudo', 'mv', 'google_compute_engine', '.ssh/' ])
+    #try:
+        #down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 
+        #down2 = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine' ]) 
+    #except:
+        #pass
+    #subprocess.run(['sudo', 'mv', 'google_compute_engine.pub', '.ssh/' ])
+    #subprocess.run(['sudo', 'mv', 'google_compute_engine', '.ssh/' ])
 # add user function
 def add_user():
  
@@ -114,47 +114,47 @@ download_key()
 
 res = run_first()
 re = res.decode()
-#words, ss = re.split('=no ')
+words, ss = re.split('=no ')
 
 
 try:
-    #ips, ssss = ss.split(' -- PROJECT_ID')
-    #user,ip = ips.split('@')
+    ips, ssss = ss.split(' -- PROJECT_ID')
+    user,ip = ips.split('@')
 
-    #print("Here is Current INFO")
+    print("Here is Current INFO")
 
-    #print(ip + " <<< Host : Port >>> 6000")
+    print(ip + " <<< Host : Port >>> 6000")
 
-    #print("nkka404")
+    print("nkka404")
     duckdns_update(domain, token, ip)
 except:
-      #ips, ssss = ss.split(' --')
-      #user,ip = ips.split('@')
+      ips, ssss = ss.split(' --')
+      user,ip = ips.split('@')
 
-#print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")
+print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")
 
-#print(" Host / IP   :⪧  " + ip)
-#print(" SSH Port    :⪧  6000")
-#print(" Username    :⪧  " + user)
-#duckdns_update(domain, token, ip)
-#print(" ")
+print(" Host / IP   :⪧  " + ip)
+print(" SSH Port    :⪧  6000")
+print(" Username    :⪧  " + user)
+duckdns_update(domain, token, ip)
+print(" ")
 
 print(" AUTO UPDATED IP TO DUCKDNS ")
 
-#print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
+print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 
-#print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
-#print(" SSH Port    :⪧  6000")
-#print(" Username    :⪧  nyeinkoko")
-#print(" ")
-#print(" Use Private Key to access server ")
-#print(" ")
-#print(" 💠 💠 💠 Private Key 💠 💠 💠")
-#print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
+print(" SSH Port    :⪧  6000")
+print(" Username    :⪧  nyeinkoko")
+print(" ")
+print(" Use Private Key to access server ")
+print(" ")
+print(" 💠 💠 💠 Private Key 💠 💠 💠")
+print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
 print("https://raw.githubusercontent.com/NyeinKoKoAung/CloudShell/main/google_compute_engine")
-#print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-#print(" ")
-#print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+print(" ")
+print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
 #print("  ___   ___         ________         ___   ___                            ")
 #print(" |\  \ |\  \       |\   __  \       |\  \ |\  \                           ")
 #print(" \ \  \/_\  \      \ \  \|\  \      \ \  \/_\  \                          ")
@@ -162,8 +162,8 @@ print("https://raw.githubusercontent.com/NyeinKoKoAung/CloudShell/main/google_co
 #print("   \|_____|\  \      \ \  \/\  \      \|_____|\  \                        ")
 #print("          \ \__\      \ \_______\            \ \__\                       ")
 #print("           \|__|       \|_______|             \|__|                       ")
-#print(" Contact the developer https://t.me/nkka404 for more information            ")
-#print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+print(" Contact the developer https://t.me/nkka404 for more information            ")
+print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
 print (" FREE GCP By Four Zero Four ")
 print (" Credit to ModsBots ")
-#print(" ")
+print(" ")

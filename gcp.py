@@ -110,7 +110,7 @@ run_wget()
 run_first()
 
 
-download_key()
+#download_key()
 
 res = run_first()
 re = res.decode()

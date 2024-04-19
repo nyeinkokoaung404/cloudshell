@@ -29,24 +29,24 @@ def duckdns_update(domains, token, ip, verbose=False):
 token = "4f0bc9a7-58b7-465f-91e8-6a1211393788"
 domain = "nyeinkokoaung.duckdns.org"
 
-#def download_key():
+def download_key():
     #url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
     #url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
-    #pub = '/.ssh/google_compute_engine.pub'
-    #prv = '/.ssh/google_compute_engine'
-    #loc = '/.ssh'
+    pub = '/.ssh/google_compute_engine.pub'
+    prv = '/.ssh/google_compute_engine'
+    loc = '/.ssh'
 
     #if os.path.exists(pub):
         #os.remove(pub)
     #if os.path.exists(prv):
         #os.remove(prv)
-    #try:
+    try:
          # executing useradd command using subprocess module
-         #subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
-         #subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine' ])     
-    #except:
-         #print(f"Failed to add user.")                    
-         #sys.exit(1)
+         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
+         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine' ])     
+    except:
+         print(f"Failed to add user.")                    
+         sys.exit(1)
     
     #try:
         #down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 

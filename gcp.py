@@ -30,16 +30,16 @@ token = "4f0bc9a7-58b7-465f-91e8-6a1211393788"
 domain = "nyeinkokoaung.duckdns.org"
 
 def download_key():
-    #url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
-    #url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
+    url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
+    url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
     pub = '/.ssh/google_compute_engine.pub'
     prv = '/.ssh/google_compute_engine'
     loc = '/.ssh'
 
-    #if os.path.exists(pub):
-        #os.remove(pub)
-    #if os.path.exists(prv):
-        #os.remove(prv)
+    if os.path.exists(pub):
+        os.remove(pub)
+    if os.path.exists(prv):
+        os.remove(prv)
     try:
          # executing useradd command using subprocess module
          subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
@@ -48,13 +48,13 @@ def download_key():
          print(f"Failed to add user.")                    
          sys.exit(1)
     
-    #try:
-        #down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 
-        #down2 = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine' ]) 
-    #except:
-        #pass
-    #subprocess.run(['sudo', 'mv', 'google_compute_engine.pub', '.ssh/' ])
-    #subprocess.run(['sudo', 'mv', 'google_compute_engine', '.ssh/' ])
+    try:
+        down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 
+        down2 = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine' ]) 
+    except:
+        pass
+    subprocess.run(['sudo', 'mv', 'google_compute_engine.pub', '.ssh/' ])
+    subprocess.run(['sudo', 'mv', 'google_compute_engine', '.ssh/' ])
 # add user function
 def add_user():
  
@@ -110,7 +110,7 @@ run_wget()
 run_first()
 
 
-#download_key()
+download_key()
 
 res = run_first()
 re = res.decode()
@@ -132,17 +132,16 @@ except:
       user,ip = ips.split('@')
 
 print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")
-
+print(" ")
 print(" Host / IP   :⪧  " + ip)
 print(" SSH Port    :⪧  6000")
 print(" Username    :⪧  " + user)
 duckdns_update(domain, token, ip)
 print(" ")
-
 print(" AUTO UPDATED IP TO DUCKDNS ")
-
+print(" ")
 print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
-
+print(" ")
 print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
 print(" SSH Port    :⪧  6000")
 print(" Username    :⪧  nkka404")

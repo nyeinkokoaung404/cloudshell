@@ -64,13 +64,13 @@ def add_user():
      # Asking for users password
      password = "12345"
     
-    # Banner
-    banner = "echo "FREE GCP BY 4-0-4" | tee /etc/ssh/gcp_404 >/dev/null"
+     # Banner
+      banner = "echo "FREE GCP" | tee /etc/ssh/gcp_404 >/dev/null"
      try:
          # executing useradd command using subprocess module
          subprocess.run(['sudo', 'useradd', '-p', password, username ])
          # subprocess.run(['sudo', 'chpasswd', '-m', username, password ])
-        subprocess.run(['sudo', banner ])
+           subprocess.run(['sudo', banner ])
      except:
          print(f"Failed to add user.")                    
          sys.exit(1)

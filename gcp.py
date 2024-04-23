@@ -3,6 +3,13 @@ import sys
 import wget
 import os.path
 import requests
+cmd = "date"
+
+# returns output as byte string
+returned_output = subprocess.check_output(cmd)
+
+# using decode() function to convert byte string to string
+print('Current date is:', returned_output.decode("utf-8"))
 
 def duckdns_update(domains, token, ip, verbose=False):
     """Update duckdns.org Dynamic DNS record.

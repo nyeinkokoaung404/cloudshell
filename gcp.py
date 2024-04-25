@@ -66,7 +66,7 @@ def download_key():
 def add_user():
  
      # Ask for the input
-     username = "nkka404"
+     username = "nyeinkoko"
  
      # Asking for users password
      password = "12345"
@@ -135,7 +135,7 @@ try:
 
     print(ip + " <<< Host : Port >>> 6000")
 
-    print("nkka404")
+    print("nyeinkoko")
     duckdns_update(domain, token, ip)
 except:
       ips, ssss = ss.split(' --')
@@ -154,7 +154,7 @@ print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 print(" ")
 print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
 print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  nkka404")
+print(" Username    :⪧  nyeinkoko")
 print(" ")
 print(" Use Private Key to access server ")
 print(" ")
@@ -173,7 +173,10 @@ print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 #print("           \|__|       \|_______|             \|__|                       ")
 print(" Contact the developer https://t.me/nkka404 for more information           ")
 print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print('Current date is:', returned_output.decode("utf-8"))
+print(" ")
+print(' Current date is:', returned_output.decode("utf-8"))
+print(" ")
 print (" FREE GCP By 4-0-4 🇲🇲 ")
+print(" ")
 print (" Credit to ModsBots 💜 ")
 print(" ")

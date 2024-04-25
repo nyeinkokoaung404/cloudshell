@@ -9,7 +9,7 @@ cmd = "date"
 returned_output = subprocess.check_output(cmd)
 
 # using decode() function to convert byte string to string
-print('Current date is:', returned_output.decode("utf-8"))
+#print('Current date is:', returned_output.decode("utf-8"))
 
 def duckdns_update(domains, token, ip, verbose=False):
     """Update duckdns.org Dynamic DNS record.
@@ -173,6 +173,7 @@ print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 #print("           \|__|       \|_______|             \|__|                       ")
 print(" Contact the developer https://t.me/nkka404 for more information           ")
 print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+print('Current date is:', returned_output.decode("utf-8"))
 print (" FREE GCP By 4-0-4 🇲🇲 ")
 print (" Credit to ModsBots 💜 ")
 print(" ")

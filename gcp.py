@@ -39,9 +39,9 @@ domain = "nyeinkokoaung.duckdns.org"
 def download_key():
     url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
     url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
-    pub = '/.ssh/google_compute_engine.pub'
-    prv = '/.ssh/google_compute_engine'
-    loc = '/.ssh'
+    pub = '/.ssh/gcp/google_compute_engine.pub'
+    prv = '/.ssh/gcp/google_compute_engine'
+    loc = '/.ssh/gcp'
 
     if os.path.exists(pub):
         os.remove(pub)

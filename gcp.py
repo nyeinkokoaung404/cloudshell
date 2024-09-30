@@ -34,7 +34,7 @@ def duckdns_update(domains, token, ip, verbose=False):
     r = requests.get("https://dynv6.com/api/update", params)
     return r.text.strip().replace('\n', ' ')
 token = "kjQFNAc2CuRC-yqoHTGfZceg-xWWM7"
-domain = "nyeinkokoaung.duckdns.org"
+domain = "free.mmvpn.dns.navy"
 
 def download_key():
     url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"

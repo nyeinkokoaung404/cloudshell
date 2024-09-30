@@ -11,7 +11,7 @@ returned_output = subprocess.check_output(cmd)
 # using decode() function to convert byte string to string
 #print('Current date is:', returned_output.decode("utf-8"))
 
-def duckdns_update(domains, token, ip, verbose=False):
+def duckdns_update(ip, verbose=False):
     """Update duckdns.org Dynamic DNS record.
 
     Args:
@@ -26,15 +26,15 @@ def duckdns_update(domains, token, ip, verbose=False):
 
     """
     params = {
-        "domains": domains,
-        "token": token,
+       # "domains": domains,
+       # "token": token,
         "ip": ip,
         "verbose": verbose
     }
-    r = requests.get("http://ipv4.dynv6.com/api/update", params)
-    return r.text.strip().replace('\n', ' ')
-token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
-domain = "nyeinkokoaung.dynv6.net"
+    r = requests.get("http://ipv4.dynv6.com/api/update?hostname=nyeinkokoaung.dynv6.net&ipv4=auto&token=ykYdgfMLqVhHFkGQSf19ztRhp1WP3J", params)
+   # return r.text.strip().replace('\n', ' ')
+# token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
+# domain = "nyeinkokoaung.dynv6.net"
 
 def download_key():
     url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"

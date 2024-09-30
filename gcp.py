@@ -33,8 +33,8 @@ def duckdns_update(domains, token, ip, verbose=False):
     }
     r = requests.get("https://dynv6.com/api/update", params)
     return r.text.strip().replace('\n', ' ')
-token = "kjQFNAc2CuRC-yqoHTGfZceg-xWWM7"
-domain = "gcp404.dynv6.net"
+token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
+domain = "nyeinkokoaung.dynv6.net"
 
 def download_key():
     url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"

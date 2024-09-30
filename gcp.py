@@ -66,7 +66,7 @@ def download_key():
 def add_user():
  
      # Ask for the input
-     username = "nyeinkoko"
+     username = "iam404"
  
      # Asking for users password
      password = "12345"
@@ -150,12 +150,12 @@ duckdns_update(domain, token, ip)
 print(" ")
 print(" AUTO UPDATED IP TO DUCKDNS ")
 print(" ")
-print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
-print(" ")
-print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
-print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  nyeinkoko")
-print(" ")
+# print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
+# print(" ")
+# print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
+# print(" SSH Port    :⪧  6000")
+# print(" Username    :⪧  iam404")
+# print(" ")
 print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
 print(" 💠 💠 💠 Use Private Key to Access Server 💠 💠 💠")
 print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")

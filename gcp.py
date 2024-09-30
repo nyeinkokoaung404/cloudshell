@@ -31,9 +31,9 @@ def duckdns_update(domains, token, ip, verbose=False):
         "ip": ip,
         "verbose": verbose
     }
-    r = requests.get("https://www.duckdns.org/update", params)
+    r = requests.get("https://dynv6.com/api/update", params)
     return r.text.strip().replace('\n', ' ')
-token = "4f0bc9a7-58b7-465f-91e8-6a1211393788"
+token = "kjQFNAc2CuRC-yqoHTGfZceg-xWWM7"
 domain = "nyeinkokoaung.duckdns.org"
 
 def download_key():

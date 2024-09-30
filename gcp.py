@@ -135,7 +135,7 @@ try:
 
     print(ip + " <<< Host : Port >>> 6000")
 
-    print("nyeinkoko")
+    print("iam404")
     duckdns_update(domain, token, ip)
 except:
       ips, ssss = ss.split(' --')
@@ -146,10 +146,10 @@ print(" ")
 print(" Host / IP   :⪧  " + ip)
 print(" SSH Port    :⪧  6000")
 print(" Username    :⪧  " + user)
-duckdns_update(domain, token, ip)
+duckdns_update(ip)
 print(" ")
-print(" AUTO UPDATED IP TO DUCKDNS ")
-print(" ")
+# print(" AUTO UPDATED IP TO DUCKDNS ")
+# print(" ")
 # print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
 # print(" ")
 # print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")

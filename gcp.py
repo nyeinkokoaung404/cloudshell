@@ -176,7 +176,7 @@ print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 print(" ")
 print(' Current date is:', returned_output.decode("utf-8"))
 print(" ")
-print (" FREE GCP By 4-0-4 🇲🇲 ")
+print (" FREE GCP BY 4̷━━◉━━4̷ 🇲🇲 ")
 print(" ")
 print (" Credit to ModsBots 💜 ")
 print(" ")

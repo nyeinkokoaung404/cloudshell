@@ -2,7 +2,7 @@ import subprocess
 import sys
 import wget
 import os.path
-import requests
+# import requests
 cmd = "date"
 # iAm4-0-4🔸
 # returns output as byte string

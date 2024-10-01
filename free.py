@@ -4,7 +4,7 @@ import wget
 import os.path
 # import requests
 cmd = "date"
-# iAm4-0-4🔸
+# iAm4-0-4
 # returns output as byte string
 returned_output = subprocess.check_output(cmd)
 

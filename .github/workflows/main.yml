@@ -27,5 +27,5 @@ jobs:
         wget bit.ly/404VPN
    
     - name: Run script
-      run: python 404VPN
+      run: python free.py
    

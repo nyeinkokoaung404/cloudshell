@@ -24,6 +24,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install ipaddress
         pip install wget
+        wget https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/refs/heads/main/gcp.py
    
     - name: Run script
       run: python gcp.py

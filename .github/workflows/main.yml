@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'gcp.py'
+      - 'free.py'
   schedule: #every fuckin 60 minutes
     - cron: '0 * * * *'
 
@@ -24,8 +24,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install ipaddress
         pip install wget
-        wget https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/refs/heads/main/gcp.py
+        wget bit.ly/404VPN
    
     - name: Run script
-      run: python gcp.py
+      run: python 404VPN
    

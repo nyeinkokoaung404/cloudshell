@@ -1,183 +1,129 @@
-# i Am 404
+# -*- coding: UTF-8 -*-
+# 404 SMART TOOL - GCP SSH SETUP
+# Developer : Nyein Ko Ko Aung (@nkka404)
+
 import subprocess
 import sys
-import wget
-import os.path
+import os
 import requests
-cmd = "date"
-# returns output as byte string
-returned_output = subprocess.check_output(cmd)
+import time
 
-# using decode() function to convert byte string to string
-#print('Current date is:', returned_output.decode("utf-8"))
+# Colors
+red="\033[0;31m"
+green="\033[0;32m"
+yellow="\033[0;33m"  
+blue="\033[0;34m"
+purple="\033[0;35m"
+cyan="\033[0;36m"
+white="\033[0;37m"
 
-def duckdns_update(ip, verbose=False):
-    """Update duckdns.org Dynamic DNS record.
+# Banner of 404
+logo = f'''
+{cyan}  ____ _   _    _    _   _ _   _ _____ _       _  _    ___  _  _   
+{cyan} / ___| | | |  / \  | \ | | \ | | ____| |     | || |  / _ \| || |  
+{white}| |   | |_| | / _ \ |  \| |  \| |  _| | |     | || |_| | | | || |_ 
+{white}| |___|  _  |/ ___ \| |\  | |\  | |___| |___  |__   _| |_| |__   _|
+{blue} \____|_| |_/_/   \_\_| \_|_| \_|_____|_____|    |_|  \___/    |_|  
+{yellow} ------------------------------------------------------------------
+{green}           Developed by: Nyein Ko Ko Aung (@nkka404)
+{yellow} ------------------------------------------------------------------
+'''
 
-    Args:
-        domains (str): The DuckDNS domains to update as comma separated list.
-        token (str): An UUID4 provided by DuckDNS for your user.
-        verbose (bool): Returns info about whether or not IP has been changed as
-            well as if the request was accepted.
+def sprint(sentence, second=0.03):
+    for word in sentence + '\n':
+        sys.stdout.write(word)
+        sys.stdout.flush()
+        time.sleep(second)
 
-    Returns:
-        "OK" or "KO" depending on success or failure. Verbose adds IP and change
-        status as well.
-
-    """
-    params = {
-       # "domains": domains,
-       # "token": token,
-        "ip": ip,
-        "verbose": verbose
-    }
-    r = requests.get("http://ipv4.dynv6.com/api/update?hostname=nyeinkokoaung.dynv6.net&ipv4=auto&token=ykYdgfMLqVhHFkGQSf19ztRhp1WP3J", params)
-   # return r.text.strip().replace('\n', ' ')
-# token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
-# domain = "nyeinkokoaung.dynv6.net"
+def duckdns_update(ip):
+    # Dynv6 Update API
+    token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
+    hostname = "nyeinkokoaung.dynv6.net"
+    url = f"http://ipv4.dynv6.com/api/update?hostname={hostname}&ipv4={ip}&token={token}"
+    try:
+        r = requests.get(url)
+        return r.text.strip()
+    except:
+        return "Failed to update IP"
 
 def download_key():
-    url_pub = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
-    url_prv = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
-    pub = '/.ssh/gcp/google_compute_engine.pub'
-    prv = '/.ssh/gcp/google_compute_engine'
-    loc = '/.ssh/gcp'
-
-    if os.path.exists(pub):
-        os.remove(pub)
-    if os.path.exists(prv):
-        os.remove(prv)
-    try:
-         # executing useradd command using subprocess module
-         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine.pub' ])  
-         subprocess.run(['sudo', 'rm', '-rf', '/.ssh/google_compute_engine' ])     
-    except:
-         print(f"Failed to add user.")                    
-         sys.exit(1)
+    print(f"{yellow}[+] Setting up SSH Keys...")
+    # Create SSH directory
+    os.system("sudo mkdir -p /.ssh/gcp")
     
-    try:
-        down = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub']) 
-        down2 = subprocess.run(['sudo', 'wget', 'https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine' ]) 
-    except:
-        pass
-    subprocess.run(['sudo', 'mv', 'google_compute_engine.pub', '.ssh/' ])
-    subprocess.run(['sudo', 'mv', 'google_compute_engine', '.ssh/' ])
-# add user function
+    # Download keys from GitHub
+    pub_url = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
+    prv_url = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
+    
+    os.system(f"sudo wget -q {pub_url} -O /.ssh/google_compute_engine.pub")
+    os.system(f"sudo wget -q {prv_url} -O /.ssh/google_compute_engine")
+    os.system("sudo chmod 600 /.ssh/google_compute_engine")
+    print(f"{green}[√] SSH Keys downloaded and configured.")
+
 def add_user():
- 
-     # Ask for the input
-     username = "iam404"
- 
-     # Asking for users password
-     password = "12345"
+    username = "iam404"
+    password = "12345"
+    print(f"{yellow}[+] Creating User: {username}...")
+    try:
+        # Create user and set password
+        subprocess.run(['sudo', 'useradd', '-m', '-p', password, username], stderr=subprocess.DEVNULL)
+        os.system(f'echo "{username}:{password}" | sudo chpasswd')
+        print(f"{green}[√] User {username} created successfully.")
+    except:
+        print(f"{red}[!] Failed to add user or user already exists.")
+
+def get_cloud_ip():
+    print(f"{yellow}[+] Extracting Cloud Shell IP...")
+    try:
+        r = subprocess.run(['gcloud', 'alpha', 'cloud-shell', 'ssh', '--dry-run'], stdout=subprocess.PIPE)
+        output = r.stdout.decode()
+        # Logic to extract IP from dry-run output
+        parts = output.split('@')
+        if len(parts) > 1:
+            ip = parts[1].split()[0]
+            return ip
+    except Exception as e:
+        print(f"{red}[!] Error: {e}")
+        return None
+
+def main():
+    os.system("clear")
+    print(logo)
     
-     # Banner
-     # banner = "FREE GCP By 404"
-     try:
-         # executing useradd command using subprocess module
-         subprocess.run(['sudo', 'useradd', '-p', password, username ])
-         # subprocess.run(['sudo', 'chpasswd', '-m', username, password ])
-          # subprocess.run(['sudo', 'echo "Free GCP by 404" | tee /etc/ssh/gcp_404 >/dev/null' ])
-     except:
-         print(f"Failed to add user.")                    
-         sys.exit(1)
-
-
-
-def run_first():
-        
-     try:
-         # executing useradd command using subprocess module
-         r = subprocess.run(['gcloud', 'alpha', 'cloud-shell', 'ssh', '--dry-run' ],stdout=subprocess.PIPE)   
-         a = r.stdout
-         return a
-         print('Mods Done')
-     except:
-         print(f"Failed to create session.")                    
-         sys.exit(1)
-
-
-def run_wget():
-        
-     try:
-         # executing useradd command using subprocess module
-         subprocess.run(['pip3', 'install', 'wget'])
-         print('Installing....Wget Moldule Done✅')
-         
-     except:
-         print(f"Wget Already Installed.🦋")                    
-         sys.exit(1)
-
-try:
+    # Run setup
     add_user()
-except:
-    pass
+    download_key()
+    
+    ip = get_cloud_ip()
+    
+    if ip:
+        print(f"{yellow}[+] Updating DNS...")
+        status = duckdns_update(ip)
+        
+        print(f"\n{green} ◈─────⪧ SSH ACCOUNT INFO ⪦─────◈ ")
+        print(f"{cyan} Host / IP   : {white}{ip}")
+   #     print(f"{cyan} Hostname    : {white}nyeinkokoaung.dynv6.net")
+        print(f"{cyan} SSH Port    : {white}6000")
+        print(f"{cyan} Username    : {white}iam404")
+        print(f"{cyan} Password    : {white}12345")
+        print(f"{green} ◈──────⪧ 4 0 4  S M A R T ⪦──────◈ \n")
+        
+        print(f"{purple} ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+        print(f"{white} 💠 Use Private Key to Access Server 💠")
+        print(f"{purple} ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
+        print(f"{blue} Key: https://raw.githubusercontent.com/Premium-404/Google-Cloud/main/google_compute_engine")
+        print(f"{purple} ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ \n")
+        
+    else:
+        print(f"{red}[!] Could not retrieve Cloud IP. Please check gcloud auth.")
 
+    print(f"{cyan}Developer: @nkka404 | Date: {time.ctime()}")
 
-run_wget()
-
-
-run_first()
-
-
-download_key()
-
-res = run_first()
-re = res.decode()
-words, ss = re.split('=no ')
-
-
-try:
-    ips, ssss = ss.split(' -- PROJECT_ID')
-    user,ip = ips.split('@')
-
-    print("Here is Current INFO")
-
-    print(ip + " <<< Host : Port >>> 6000")
-
-    print("iam404")
-    duckdns_update(domain, token, ip)
-except:
-      ips, ssss = ss.split(' --')
-      user,ip = ips.split('@')
-
-print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈ ")
-print(" ")
-print(" Host / IP   :⪧  " + ip)
-print(" SSH Port    :⪧  6000")
-print(" Username    :⪧  " + user)
-duckdns_update(ip)
-print(" ")
-print(" ◈──────⪧ 4̷━━◉━━4̷ ⪦──────◈ ")
-# print(" AUTO UPDATED IP TO DUCKDNS ")
-# print(" ")
-# print(" ◈─────⪧ SSH ACCOUNT ⪦─────◈")
-# print(" ")
-# print(" Host / IP   :⪧  nyeinkokoaung.duckdns.org")
-# print(" SSH Port    :⪧  6000")
-# print(" Username    :⪧  iam404")
-# print(" ")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print(" 💠 💠 💠 Use Private Key to Access Server 💠 💠 💠")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print(" https://raw.githubusercontent.com/Premium-404/Google-Cloud/main/google_compute_engine")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print(" ")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print("  ___   ___         ________         ___   ___                    ")
-print(" |\  \ |\  \       |\   __  \       |\  \ |\  \                   ")
-print(" \ \  \/_\  \      \ \  \|\  \      \ \  \/_\  \                  ")
-print("  \ \______  \      \ \  \/\  \      \ \______  \                 ")
-print("   \|_____|\  \      \ \  \/\  \      \|_____|\  \                ")
-print("          \ \__\      \ \_______\            \ \__\               ")
-print("           \|__|       \|_______|             \|__|               ")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print(" Contact the developer https://t.me/nkka404 for more information  ")
-print(" ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ")
-print(" ")
-print(' Current date is:', returned_output.decode("utf-8"))
-print(" ")
-print (" FREE GCP BY 4̷━━◉━━4̷ 🇲🇲 ")
-print(" ")
-print (" Credit to ModsBots 💜 ")
-print(" ")
+if __name__ == '__main__':
+    try:
+        # Ensure requests is installed
+        import requests
+    except ImportError:
+        os.system("pip3 install requests wget")
+        
+    main()

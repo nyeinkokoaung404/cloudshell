@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
-# 404 SMART TOOL - GCP SSH SETUP (STAY-ALIVE VERSION)
-# Developer : Nyein Ko Ko Aung (@nkka404)
+# Developer : Nyein Ko Ko Aung (t.me/nkka404)
 
 import subprocess
 import sys
@@ -31,14 +30,13 @@ logo = f'''
 '''
 
 def stay_alive_loop():
-    """System ကို အလုပ်လုပ်နေတယ်လို့ ထင်အောင် ၅ မိနစ်တစ်ခါ Pulse လုပ်ပေးတဲ့ Function"""
     while True:
         current_time = time.ctime()
         # Terminal မှာ စာသားတစ်ခုခု အမြဲ print ထုတ်ပေးခြင်းဖြင့် Idle ဖြစ်တာကို ကာကွယ်ပါတယ်
         print(f"\n{purple}[404-HEARTBEAT]{white} System Pulse at {current_time} - Status: Running")
         time.sleep(300) # ၅ မိနစ်တစ်ခါ
 
-def duckdns_update(ip):
+def dns_update(ip):
     token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
     hostname = "nyeinkokoaung.dynv6.net"
     url = f"http://ipv4.dynv6.com/api/update?hostname={hostname}&ipv4={ip}&token={token}"
@@ -60,8 +58,8 @@ def setup_ssh():
     os.system("sudo chmod 600 /.ssh/google_compute_engine")
     
     # User iam404 ဆောက်မယ်
-    username = "iam404"
-    password = "12345"
+    username = "Channel404"
+    password = "123456"
     os.system(f"sudo useradd -m -p {password} {username} 2>/dev/null")
     os.system(f'echo "{username}:{password}" | sudo chpasswd')
     print(f"{green}[√] SSH Setup Completed.")
@@ -88,14 +86,14 @@ def main():
     
     if ip:
         print(f"{yellow}[+] Updating Dynamic DNS (Dynv6)...")
-        status = duckdns_update(ip)
+        status = dns_update(ip)
         
-        print(f"\n{green} ◈─────⪧ SSH ACCOUNT INFO ⪦─────◈ ")
+        print(f"\n{green} ◈──────⪧ SSH ACCOUNT INFO ⪦──────◈ ")
         print(f"{cyan} Host / IP   : {white}{ip}")
         print(f"{cyan} SSH Port    : {white}6000")
-        print(f"{cyan} Username    : {white}iam404")
-        print(f"{cyan} DNS Status  : {white}{status}")
-        print(f"{green} ◈──────⪧ S M A R T - 4 0 4 ⪦──────◈ \n")
+        print(f"{cyan} Username    : {white}+ user")
+       # print(f"{cyan} DNS Status  : {white}{status}")
+        print(f"{green} ◈──────⪧ SMART FREE GCP ⪦──────◈ \n")
         
         print(f"{yellow}[!] Tool is now in Stay-Alive mode.")
         print(f"{yellow}[!] Please keep this tab open and use 'tmux' for background running.")

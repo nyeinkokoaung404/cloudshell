@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 # Developer : Nyein Ko Ko Aung (t.me/nkka404)
 
 import subprocess
@@ -8,7 +7,7 @@ import requests
 import time
 import threading
 
-# Basic colors
+# Colors
 red="\033[0;31m"
 green="\033[0;32m"
 yellow="\033[0;33m"  
@@ -32,11 +31,10 @@ logo = f'''
 def stay_alive_loop():
     while True:
         current_time = time.ctime()
-        # Terminal မှာ စာသားတစ်ခုခု အမြဲ print ထုတ်ပေးခြင်းဖြင့် Idle ဖြစ်တာကို ကာကွယ်ပါတယ်
-        print(f"\n{purple}[404-HEARTBEAT]{white} System Pulse at {current_time} - Status: Running")
-        time.sleep(300) # ၅ မိနစ်တစ်ခါ
+        print(f"\n{purple}[404-HEARTBEAT]{white} Pulse at {current_time} - Server Active")
+        time.sleep(300)
 
-def dns_update(ip):
+def duckdns_update(ip):
     token = "ykYdgfMLqVhHFkGQSf19ztRhp1WP3J"
     hostname = "nyeinkokoaung.dynv6.net"
     url = f"http://ipv4.dynv6.com/api/update?hostname={hostname}&ipv4={ip}&token={token}"
@@ -44,12 +42,11 @@ def dns_update(ip):
         r = requests.get(url, timeout=10)
         return r.text.strip()
     except:
-        return "Connection Error"
+        return "DNS Update Failed"
 
 def setup_ssh():
-    print(f"{yellow}[+] Configuring SSH Environment...")
+    print(f"{yellow}[+] Preparing SSH Keys and User...")
     os.system("sudo mkdir -p /.ssh")
-    # GitHub ကနေ Key တွေယူမယ်
     pub_url = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine.pub"
     prv_url = "https://raw.githubusercontent.com/nyeinkokoaung404/cloudshell/main/google_compute_engine"
     
@@ -57,50 +54,51 @@ def setup_ssh():
     os.system(f"sudo wget -q {prv_url} -O /.ssh/google_compute_engine")
     os.system("sudo chmod 600 /.ssh/google_compute_engine")
     
-    # User iam404 ဆောက်မယ်
-    username = "Channel404"
-    password = "123456"
+    # System User
+    username = "iam404"
+    password = "12345"
     os.system(f"sudo useradd -m -p {password} {username} 2>/dev/null")
     os.system(f'echo "{username}:{password}" | sudo chpasswd')
     print(f"{green}[√] SSH Setup Completed.")
 
-def get_cloud_ip():
+def get_ssh_info():
     try:
         r = subprocess.run(['gcloud', 'alpha', 'cloud-shell', 'ssh', '--dry-run'], stdout=subprocess.PIPE)
-        output = r.stdout.decode()
-        # Extracting IP from dry-run string
-        ip = output.split('@')[1].split()[0]
-        return ip
+        res = r.stdout.decode()
+        
+        ssh_part = res.split('=no ')[1].split(' --')[0]
+        user, ip = ssh_part.split('@')
+        return user, ip
     except:
-        return None
+        return None, None
 
 def main():
     os.system("clear")
     print(logo)
     
-    # Stay Alive Background Thread ကို စတင်မယ်
+    # Pulse thread
     threading.Thread(target=stay_alive_loop, daemon=True).start()
     
     setup_ssh()
-    ip = get_cloud_ip()
+    user, ip = get_ssh_info()
     
-    if ip:
-        print(f"{yellow}[+] Updating Dynamic DNS (Dynv6)...")
-        status = dns_update(ip)
+    if ip and user:
+        print(f"{yellow}[+] Updating Dynv6 IP...")
+        dns_status = duckdns_update(ip)
         
-        print(f"\n{green} ◈──────⪧ SSH ACCOUNT INFO ⪦──────◈ ")
-        print(f"{cyan} Host / IP   : {white}{ip}")
-        print(f"{cyan} SSH Port    : {white}6000")
-        print(f"{cyan} Username    : {white}+ user")
-       # print(f"{cyan} DNS Status  : {white}{status}")
-        print(f"{green} ◈──────⪧ SMART FREE GCP ⪦──────◈ \n")
+        print(f"\n{green} ◈─────⪧ SSH ACCOUNT INFO ⪦─────◈ ")
+        print(f"{cyan} Host / IP   :⪧  {white}{ip}")
+        print(f"{cyan} SSH Port    :⪧  {white}6000")
+        print(f"{cyan} Username    :⪧  {white}{user}")
+   #     print(f"{cyan} DNS Update  :⪧  {white}{dns_status}")
+        print(f"{green} ◈──────⪧ 4 0 4  S M A R T ⪦──────◈ \n")
         
-        print(f"{yellow}[!] Tool is now in Stay-Alive mode.")
-        print(f"{yellow}[!] Please keep this tab open and use 'tmux' for background running.")
+    #    print(f"{yellow} 💠 Hostname Access: {white}nyeinkokoaung.dynv6.net")
+        print(f"{yellow} 💠 Keep this tab open for better stability.")
     else:
-        print(f"{red}[!] Error: Could not retrieve Cloud Shell IP.")
+        print(f"{red}[!] Error: Could not capture SSH details from gcloud.")
 
-    # အဆုံးမရှိ စောင့်နေအောင် လုပ်ထားခြင်း
+    # Keep script running
     while True:
         time.sleep(1)
 
@@ -108,5 +106,5 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print(f"\n{red}[!] Stopped by user.")
+        print(f"\n{red}[!] Stopped.")
         sys.exit()
